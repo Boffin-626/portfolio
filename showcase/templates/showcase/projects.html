@@ -1,0 +1,27 @@
+{% extends 'showcase/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            {% for project in projects %}
+            <ul>
+                <li><b>Name</b>: {{ project.title }}</li>
+                <p><b>Details</b>: {{ project.description }}</p>
+                <p><b>Technologies Used</b>: {{ project.tech_stack }}</p>
+                <p><b>Github Link</b>: {{ project.github_link }}</p>
+                <a href="#"><b>See Project live</b></a>
+                <hr>
+            </ul>
+            {% empty %}
+            <p>No projects found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-4">
+        <a href="{% url 'showcase:index' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

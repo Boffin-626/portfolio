@@ -1,0 +1,78 @@
+{% extends 'showcase/base.html' %}
+{% load static %}
+{% block content %}
+<!-- Hero Section -->
+<div id="hero" class="container-fluid p-5">
+    <div class="row align-items-center">
+        <!-- Column for Download CV Button -->
+        <div class="col-md-6 text-center">
+            <a href="#" target="_blank" class="btn btn-outline-primary btn-lg">Download My CV</a>
+        </div>
+        <!-- Column for Get in Touch Section -->
+        <div class="col-md-6 text-center">
+            <h2>Get in Touch</h2>
+            <p>If you'd like to discuss a project or employment, feel free to contact me: boffin626@icloud.com</p>
+        </div>
+    </div>
+</div>
+
+<!-- About Me Section -->
+<div id="about" class="container mt-5">
+    <div class="row">
+        <!-- Image Column -->
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/self.jpg' %}" class="img-fluid" alt="Your Image"/>
+        </div>
+        <!-- Text Column -->
+        <div class="col-md-6">
+            <h2 class="text-white">About Me</h2>
+            <p class="text-white">I am a "self-taught" Django developer with 3 years of building web applications. 
+                I work in both ends - front and back.
+            </p>
+            <hr>
+            <div>
+                <p class="text-white"><b class="text-warning">Backend</b>: Proficient in Django, working knowledge of REST APIs and database management.</p>
+                <p class="text-white"><b class="text-warning">Frontend</b>: Proficient in HTML, CSS, JavaScript, and Bootstrap for creating responsive web interfaces.</p>
+                <p class="text-white"><b class="text-warning">Version Control</b>: Git and GitHub for managing and collaborating on projects.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Projects Section -->
+<div id="projects" class="container mt-5 pt-5" >
+    <div class="row">
+        <h4 class="text-center">Projects</h4>
+        <div class="col-md-12">
+            {% for project in projects %}
+            <ul>
+                <li><b>Name</b>: {{ project.title }}</li>
+                <p><b>Description</b>: {{ project.description }}</p>
+                <p><b class="text-warning">Technologies Used</b>: {{ project.tech_stack }}</p>
+                <p><b>Features</b>: {{ project.features }}</p>
+                <p><b>Status</b>: {{ project.status }}</p>
+                <p><b class="text-warning">Github Link</b>: {{ project.github_link }}</p>
+                <a href="{{ project.live_link }}"  target="_blank" class="btn btn-primary">See Project</a>
+                <hr>
+            </ul>
+            {% empty %}
+            <p>No projects found.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+   <!-- Contact Section -->
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+{% endblock %}

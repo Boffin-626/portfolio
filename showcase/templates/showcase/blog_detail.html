@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ blog_post.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h3 class="text-center">{{ blog_post.title }}</h3>
+        <p class="text-muted text-center">{{ blog_post.created_at|date:"F j, Y" }}</p>
+        <hr>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% if blog_post.image %}
+                <img src="{{ blog_post.image.url }}" class="img-fluid mb-3" alt="{{ blog_post.title }}">
+                {% endif %}
+                <div class="min-vh-100">
+                    {{ blog_post.body|safe }} <!-- Use the safe filter here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS, Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
